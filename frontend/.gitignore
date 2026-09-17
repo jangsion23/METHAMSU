@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env.local
+coverage/
+.playwright-browsers/
+.playwright-downloads/
+test-results/
+playwright-report/

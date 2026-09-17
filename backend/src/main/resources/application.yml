@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8080}
+  tomcat:
+    basedir: .cache/tomcat
+  error:
+    include-message: never
+spring:
+  profiles:
+    group:
+      local: dev
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/recall}
+    username: ${DB_USERNAME:recall}
+    password: ${DB_PASSWORD:recall}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
+      file-size-threshold: 10MB
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      accept-float-as-int: false
+      fail-on-trailing-tokens: true
+    mapper:
+      allow-coercion-of-scalars: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+recall:
+  live-enabled: ${LIVE_ENABLED:false}
+  api-key: ${CLAUDE_API_KEY:}
+  model: ${CLAUDE_MODEL:claude-haiku-4-5-20251001}
+  provider-url: ${ANTHROPIC_BASE_URL:https://api.anthropic.com}
+  provider-timeout-seconds: ${PROVIDER_TIMEOUT_SECONDS:45}
+  retry-delay-ms: ${PROVIDER_RETRY_DELAY_MS:500}
+  course-name: ${COURSE_NAME:운영체제 (임시 개념 태그)}
